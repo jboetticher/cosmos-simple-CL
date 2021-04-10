@@ -5,14 +5,14 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgDeletePrice } from "./types/clprice/tx";
-import { MsgCreatePrice } from "./types/clprice/tx";
 import { MsgUpdatePrice } from "./types/clprice/tx";
+import { MsgCreatePrice } from "./types/clprice/tx";
 
 
 const types = [
   ["/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", MsgDeletePrice],
-  ["/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", MsgCreatePrice],
   ["/jboetticher.simpleclcosmos.clprice.MsgUpdatePrice", MsgUpdatePrice],
+  ["/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", MsgCreatePrice],
   
 ];
 
@@ -41,8 +41,8 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee=defaultFee, memo=null }: SignAndBroadcastOptions) => memo?client.signAndBroadcast(address, msgs, fee,memo):client.signAndBroadcast(address, msgs, fee),
     msgDeletePrice: (data: MsgDeletePrice): EncodeObject => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", value: data }),
-    msgCreatePrice: (data: MsgCreatePrice): EncodeObject => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", value: data }),
     msgUpdatePrice: (data: MsgUpdatePrice): EncodeObject => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgUpdatePrice", value: data }),
+    msgCreatePrice: (data: MsgCreatePrice): EncodeObject => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", value: data }),
     
   };
 };

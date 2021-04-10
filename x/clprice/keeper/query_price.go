@@ -20,8 +20,9 @@ func listPrice(ctx sdk.Context, keeper Keeper, legacyQuerierCdc *codec.LegacyAmi
 
 func getPrice(ctx sdk.Context, key string, keeper Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
 	
-	// TODO: this is just testing to see if i can get this to work
-	//return [0, 1, 0], nil
+	// TODO: this is just testing to see if i can get this to work.
+	// apparently this doesn't work for reasons unknown
+	//return []byte{ 0, 1, 0 }, nil
 	
 	id, err := strconv.ParseUint(key, 10, 64)
 	if err != nil {
