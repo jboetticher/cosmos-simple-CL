@@ -18,7 +18,7 @@ func CmdSendIbcPrice() *cobra.Command {
 		//Use:   "send-ibcPrice [src-port] [src-channel] [name] [price] [date]",
 		Use: "send-ibcPrice [src-port] [src-channel] [name]",
 		Short: "Send recent ibcPrice over IBC",
-		Args:  cobra.ExactArgs(5),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			argsName := string(args[2]) //string(args[2])
 			argsPrice := 0 //strconv.ParseInt(args[3], 10, 64)
