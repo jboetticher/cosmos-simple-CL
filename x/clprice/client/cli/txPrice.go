@@ -12,13 +12,13 @@ import (
 
 func CmdCreatePrice() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-price [name] [price] [date]",
+		Use:   "create-price [name]",
 		Short: "Creates a new price",
-		Args:  cobra.ExactArgs(3),
+		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			argsName := string(args[0])
-			argsPrice, _ := strconv.ParseInt(args[1], 10, 64)
-			argsDate, _ := strconv.ParseInt(args[2], 10, 64)
+			argsPrice, _ := 60// strconv.ParseInt(args[1], 10, 64) set to 60 just for testing
+			argsDate, _ := 60//strconv.ParseInt(args[2], 10, 64)
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {

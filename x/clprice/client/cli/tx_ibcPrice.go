@@ -21,8 +21,8 @@ func CmdSendIbcPrice() *cobra.Command {
 		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			argsName := string(args[2]) //string(args[2])
-			argsPrice := 0 //strconv.ParseInt(args[3], 10, 64)
-			argsDate := 0 //time.Now().Unix() //strconv.ParseInt(args[4], 10, 64)
+			argsPrice := 420 //strconv.ParseInt(args[3], 10, 64)
+			argsDate := 420 //time.Now().Unix() //strconv.ParseInt(args[4], 10, 64)
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {

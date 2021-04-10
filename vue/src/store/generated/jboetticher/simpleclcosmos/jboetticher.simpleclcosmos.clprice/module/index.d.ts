@@ -1,13 +1,13 @@
 import { StdFee } from "@cosmjs/launchpad";
 import { OfflineSigner, EncodeObject } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgDeletePrice } from "./types/clprice/tx";
+import { MsgSendIbcPrice } from "./types/clprice/tx";
 import { MsgUpdateSentPrice } from "./types/clprice/tx";
-import { MsgCreateSentPrice } from "./types/clprice/tx";
 import { MsgCreatePrice } from "./types/clprice/tx";
+import { MsgDeletePrice } from "./types/clprice/tx";
+import { MsgCreateSentPrice } from "./types/clprice/tx";
 import { MsgDeleteSentPrice } from "./types/clprice/tx";
 import { MsgUpdatePrice } from "./types/clprice/tx";
-import { MsgSendIbcPrice } from "./types/clprice/tx";
 interface TxClientOptions {
     addr: string;
 }
@@ -17,13 +17,13 @@ interface SignAndBroadcastOptions {
 }
 declare const txClient: (wallet: OfflineSigner, { addr: addr }?: TxClientOptions) => Promise<{
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions) => Promise<import("@cosmjs/stargate").BroadcastTxResponse>;
-    msgDeletePrice: (data: MsgDeletePrice) => EncodeObject;
+    msgSendIbcPrice: (data: MsgSendIbcPrice) => EncodeObject;
     msgUpdateSentPrice: (data: MsgUpdateSentPrice) => EncodeObject;
-    msgCreateSentPrice: (data: MsgCreateSentPrice) => EncodeObject;
     msgCreatePrice: (data: MsgCreatePrice) => EncodeObject;
+    msgDeletePrice: (data: MsgDeletePrice) => EncodeObject;
+    msgCreateSentPrice: (data: MsgCreateSentPrice) => EncodeObject;
     msgDeleteSentPrice: (data: MsgDeleteSentPrice) => EncodeObject;
     msgUpdatePrice: (data: MsgUpdatePrice) => EncodeObject;
-    msgSendIbcPrice: (data: MsgSendIbcPrice) => EncodeObject;
 }>;
 interface QueryClientOptions {
     addr: string;

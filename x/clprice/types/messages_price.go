@@ -8,11 +8,16 @@ import (
 var _ sdk.Msg = &MsgCreatePrice{}
 
 func NewMsgCreatePrice(creator string, name string, price int32, date int32) *MsgCreatePrice {
+
+	// TODO: this is where we simulate getting the data from the wallet.
+	currentPrice := int32(500)
+	currentDate := int32(time.Now().Unix())
+
 	return &MsgCreatePrice{
 		Creator: creator,
 		Name:    name,
-		Price:   price,
-		Date:    date,
+		Price:   currentPrice,
+		Date:    currentDate,
 	}
 }
 

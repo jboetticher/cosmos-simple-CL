@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"errors"
+	"strconv"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -76,12 +77,12 @@ func (k Keeper) OnRecvIbcPricePacket(ctx sdk.Context, packet channeltypes.Packet
 	// TODO: packet reception logic
 	id := k.AppendPrice(
 		ctx,
-		packet.SourcePort+"-"+packet.SourceChannel+"-"+string(data.Date),
+		packet.SourcePort+"-"+packet.SourceChannel,
 		data.Name,
 		data.Price,
 		data.Date,
 	)
-	packetAck.PriceID = string(id);
+	packetAck.PriceID = strconv.FormatUint(id, 10);
 
 	return packetAck, nil
 }
@@ -108,7 +109,7 @@ func (k Keeper) OnAcknowledgementIbcPricePacket(ctx sdk.Context, packet channelt
 		// successful acknowledgement logic
 		k.AppendSentPrice(
 			ctx,
-			packet.SourcePort+"-"+packet.SourceChannel+"-"+string(data.Date),
+			packet.SourcePort+"-"+packet.SourceChannel,
 			packetAck.PriceID,
 			data.Name,
 			packet.DestinationPort+"-"+packet.DestinationChannel,
