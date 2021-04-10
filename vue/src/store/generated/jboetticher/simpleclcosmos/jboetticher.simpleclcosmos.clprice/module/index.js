@@ -2,21 +2,21 @@
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgSendIbcPrice } from "./types/clprice/tx";
-import { MsgUpdateSentPrice } from "./types/clprice/tx";
-import { MsgCreatePrice } from "./types/clprice/tx";
-import { MsgDeletePrice } from "./types/clprice/tx";
-import { MsgCreateSentPrice } from "./types/clprice/tx";
 import { MsgDeleteSentPrice } from "./types/clprice/tx";
+import { MsgSendIbcPrice } from "./types/clprice/tx";
 import { MsgUpdatePrice } from "./types/clprice/tx";
+import { MsgCreateSentPrice } from "./types/clprice/tx";
+import { MsgCreatePrice } from "./types/clprice/tx";
+import { MsgUpdateSentPrice } from "./types/clprice/tx";
+import { MsgDeletePrice } from "./types/clprice/tx";
 const types = [
-    ["/jboetticher.simpleclcosmos.clprice.MsgSendIbcPrice", MsgSendIbcPrice],
-    ["/jboetticher.simpleclcosmos.clprice.MsgUpdateSentPrice", MsgUpdateSentPrice],
-    ["/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", MsgCreatePrice],
-    ["/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", MsgDeletePrice],
-    ["/jboetticher.simpleclcosmos.clprice.MsgCreateSentPrice", MsgCreateSentPrice],
     ["/jboetticher.simpleclcosmos.clprice.MsgDeleteSentPrice", MsgDeleteSentPrice],
+    ["/jboetticher.simpleclcosmos.clprice.MsgSendIbcPrice", MsgSendIbcPrice],
     ["/jboetticher.simpleclcosmos.clprice.MsgUpdatePrice", MsgUpdatePrice],
+    ["/jboetticher.simpleclcosmos.clprice.MsgCreateSentPrice", MsgCreateSentPrice],
+    ["/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", MsgCreatePrice],
+    ["/jboetticher.simpleclcosmos.clprice.MsgUpdateSentPrice", MsgUpdateSentPrice],
+    ["/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", MsgDeletePrice],
 ];
 const registry = new Registry(types);
 const defaultFee = {
@@ -30,13 +30,13 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     const { address } = (await wallet.getAccounts())[0];
     return {
         signAndBroadcast: (msgs, { fee = defaultFee, memo = null }) => memo ? client.signAndBroadcast(address, msgs, fee, memo) : client.signAndBroadcast(address, msgs, fee),
-        msgSendIbcPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgSendIbcPrice", value: data }),
-        msgUpdateSentPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgUpdateSentPrice", value: data }),
-        msgCreatePrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", value: data }),
-        msgDeletePrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", value: data }),
-        msgCreateSentPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreateSentPrice", value: data }),
         msgDeleteSentPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgDeleteSentPrice", value: data }),
+        msgSendIbcPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgSendIbcPrice", value: data }),
         msgUpdatePrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgUpdatePrice", value: data }),
+        msgCreateSentPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreateSentPrice", value: data }),
+        msgCreatePrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgCreatePrice", value: data }),
+        msgUpdateSentPrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgUpdateSentPrice", value: data }),
+        msgDeletePrice: (data) => ({ typeUrl: "/jboetticher.simpleclcosmos.clprice.MsgDeletePrice", value: data }),
     };
 };
 const queryClient = async ({ addr: addr } = { addr: "http://localhost:1317" }) => {

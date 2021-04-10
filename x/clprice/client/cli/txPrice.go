@@ -17,8 +17,8 @@ func CmdCreatePrice() *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			argsName := string(args[0])
-			argsPrice, _ := 60// strconv.ParseInt(args[1], 10, 64) set to 60 just for testing
-			argsDate, _ := 60//strconv.ParseInt(args[2], 10, 64)
+			argsPrice := 60// strconv.ParseInt(args[1], 10, 64) set to 60 just for testing
+			argsDate := 60//strconv.ParseInt(args[2], 10, 64)
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
