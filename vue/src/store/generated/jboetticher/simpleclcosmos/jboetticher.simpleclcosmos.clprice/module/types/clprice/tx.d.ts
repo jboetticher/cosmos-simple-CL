@@ -1,6 +1,30 @@
 import { Reader, Writer } from "protobufjs/minimal";
 export declare const protobufPackage = "jboetticher.simpleclcosmos.clprice";
 /** this line is used by starport scaffolding # proto/tx/message */
+export interface MsgCreateSentPrice {
+    creator: string;
+    priceID: string;
+    name: string;
+    chain: string;
+}
+export interface MsgCreateSentPriceResponse {
+    id: number;
+}
+export interface MsgUpdateSentPrice {
+    creator: string;
+    id: number;
+    priceID: string;
+    name: string;
+    chain: string;
+}
+export interface MsgUpdateSentPriceResponse {
+}
+export interface MsgDeleteSentPrice {
+    creator: string;
+    id: number;
+}
+export interface MsgDeleteSentPriceResponse {
+}
 export interface MsgCreatePrice {
     creator: string;
     name: string;
@@ -25,6 +49,48 @@ export interface MsgDeletePrice {
 }
 export interface MsgDeletePriceResponse {
 }
+export declare const MsgCreateSentPrice: {
+    encode(message: MsgCreateSentPrice, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateSentPrice;
+    fromJSON(object: any): MsgCreateSentPrice;
+    toJSON(message: MsgCreateSentPrice): unknown;
+    fromPartial(object: DeepPartial<MsgCreateSentPrice>): MsgCreateSentPrice;
+};
+export declare const MsgCreateSentPriceResponse: {
+    encode(message: MsgCreateSentPriceResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateSentPriceResponse;
+    fromJSON(object: any): MsgCreateSentPriceResponse;
+    toJSON(message: MsgCreateSentPriceResponse): unknown;
+    fromPartial(object: DeepPartial<MsgCreateSentPriceResponse>): MsgCreateSentPriceResponse;
+};
+export declare const MsgUpdateSentPrice: {
+    encode(message: MsgUpdateSentPrice, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateSentPrice;
+    fromJSON(object: any): MsgUpdateSentPrice;
+    toJSON(message: MsgUpdateSentPrice): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateSentPrice>): MsgUpdateSentPrice;
+};
+export declare const MsgUpdateSentPriceResponse: {
+    encode(_: MsgUpdateSentPriceResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateSentPriceResponse;
+    fromJSON(_: any): MsgUpdateSentPriceResponse;
+    toJSON(_: MsgUpdateSentPriceResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateSentPriceResponse>): MsgUpdateSentPriceResponse;
+};
+export declare const MsgDeleteSentPrice: {
+    encode(message: MsgDeleteSentPrice, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteSentPrice;
+    fromJSON(object: any): MsgDeleteSentPrice;
+    toJSON(message: MsgDeleteSentPrice): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteSentPrice>): MsgDeleteSentPrice;
+};
+export declare const MsgDeleteSentPriceResponse: {
+    encode(_: MsgDeleteSentPriceResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteSentPriceResponse;
+    fromJSON(_: any): MsgDeleteSentPriceResponse;
+    toJSON(_: MsgDeleteSentPriceResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteSentPriceResponse>): MsgDeleteSentPriceResponse;
+};
 export declare const MsgCreatePrice: {
     encode(message: MsgCreatePrice, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreatePrice;
@@ -70,6 +136,9 @@ export declare const MsgDeletePriceResponse: {
 /** Msg defines the Msg service. */
 export interface Msg {
     /** this line is used by starport scaffolding # proto/tx/rpc */
+    CreateSentPrice(request: MsgCreateSentPrice): Promise<MsgCreateSentPriceResponse>;
+    UpdateSentPrice(request: MsgUpdateSentPrice): Promise<MsgUpdateSentPriceResponse>;
+    DeleteSentPrice(request: MsgDeleteSentPrice): Promise<MsgDeleteSentPriceResponse>;
     CreatePrice(request: MsgCreatePrice): Promise<MsgCreatePriceResponse>;
     UpdatePrice(request: MsgUpdatePrice): Promise<MsgUpdatePriceResponse>;
     DeletePrice(request: MsgDeletePrice): Promise<MsgDeletePriceResponse>;
@@ -77,6 +146,9 @@ export interface Msg {
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
+    CreateSentPrice(request: MsgCreateSentPrice): Promise<MsgCreateSentPriceResponse>;
+    UpdateSentPrice(request: MsgUpdateSentPrice): Promise<MsgUpdateSentPriceResponse>;
+    DeleteSentPrice(request: MsgDeleteSentPrice): Promise<MsgDeleteSentPriceResponse>;
     CreatePrice(request: MsgCreatePrice): Promise<MsgCreatePriceResponse>;
     UpdatePrice(request: MsgUpdatePrice): Promise<MsgUpdatePriceResponse>;
     DeletePrice(request: MsgDeletePrice): Promise<MsgDeletePriceResponse>;

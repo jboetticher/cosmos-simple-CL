@@ -36,3 +36,8 @@ const (
 	PriceKey      = "Price-value-"
 	PriceCountKey = "Price-count-"
 )
+
+const (
+	SentPriceKey      = "SentPrice-value-"
+	SentPriceCountKey = "SentPrice-count-"
+)

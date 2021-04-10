@@ -1,9 +1,12 @@
+import { SentPrice } from "../clprice/sentPrice";
 import { Price } from "../clprice/price";
 import { Writer, Reader } from "protobufjs/minimal";
 export declare const protobufPackage = "jboetticher.simpleclcosmos.clprice";
 /** GenesisState defines the clprice module's genesis state. */
 export interface GenesisState {
     /** this line is used by starport scaffolding # genesis/proto/state */
+    sentPriceList: SentPrice[];
+    /** this line is used by starport scaffolding # genesis/proto/stateField */
     priceList: Price[];
     /** this line is used by starport scaffolding # genesis/proto/stateField */
     portId: string;

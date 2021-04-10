@@ -17,10 +17,16 @@ func RegisterRoutes(clientCtx client.Context, r *mux.Router) {
 	registerQueryRoutes(clientCtx, r)
 	registerTxHandlers(clientCtx, r)
 
+	registerQueryRoutes(clientCtx, r)
+	registerTxHandlers(clientCtx, r)
+
 }
 
 func registerQueryRoutes(clientCtx client.Context, r *mux.Router) {
 	// this line is used by starport scaffolding # 3
+	r.HandleFunc("/clprice/sentPrices/{id}", getSentPriceHandler(clientCtx)).Methods("GET")
+	r.HandleFunc("/clprice/sentPrices", listSentPriceHandler(clientCtx)).Methods("GET")
+
 	r.HandleFunc("/clprice/prices/{id}", getPriceHandler(clientCtx)).Methods("GET")
 	r.HandleFunc("/clprice/prices", listPriceHandler(clientCtx)).Methods("GET")
 
@@ -28,6 +34,10 @@ func registerQueryRoutes(clientCtx client.Context, r *mux.Router) {
 
 func registerTxHandlers(clientCtx client.Context, r *mux.Router) {
 	// this line is used by starport scaffolding # 4
+	r.HandleFunc("/clprice/sentPrices", createSentPriceHandler(clientCtx)).Methods("POST")
+	r.HandleFunc("/clprice/sentPrices/{id}", updateSentPriceHandler(clientCtx)).Methods("POST")
+	r.HandleFunc("/clprice/sentPrices/{id}", deleteSentPriceHandler(clientCtx)).Methods("POST")
+
 	r.HandleFunc("/clprice/prices", createPriceHandler(clientCtx)).Methods("POST")
 	r.HandleFunc("/clprice/prices/{id}", updatePriceHandler(clientCtx)).Methods("POST")
 	r.HandleFunc("/clprice/prices/{id}", deletePriceHandler(clientCtx)).Methods("POST")

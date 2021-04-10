@@ -14,9 +14,18 @@ export interface ClpriceMsgCreatePriceResponse {
   id?: string;
 }
 
+export interface ClpriceMsgCreateSentPriceResponse {
+  /** @format uint64 */
+  id?: string;
+}
+
 export type ClpriceMsgDeletePriceResponse = object;
 
+export type ClpriceMsgDeleteSentPriceResponse = object;
+
 export type ClpriceMsgUpdatePriceResponse = object;
+
+export type ClpriceMsgUpdateSentPriceResponse = object;
 
 export interface ClpricePrice {
   creator?: string;
@@ -47,8 +56,37 @@ export interface ClpriceQueryAllPriceResponse {
   pagination?: V1Beta1PageResponse;
 }
 
+export interface ClpriceQueryAllSentPriceResponse {
+  SentPrice?: ClpriceSentPrice[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
 export interface ClpriceQueryGetPriceResponse {
   Price?: ClpricePrice;
+}
+
+export interface ClpriceQueryGetSentPriceResponse {
+  SentPrice?: ClpriceSentPrice;
+}
+
+export interface ClpriceSentPrice {
+  creator?: string;
+
+  /** @format uint64 */
+  id?: string;
+  priceID?: string;
+  name?: string;
+  chain?: string;
 }
 
 export interface ProtobufAny {
@@ -346,12 +384,51 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryPrice
-   * @summary this line is used by starport scaffolding # 2
    * @request GET:/jboetticher/simpleclcosmos/clprice/price/{id}
    */
   queryPrice = (id: string, params: RequestParams = {}) =>
     this.request<ClpriceQueryGetPriceResponse, RpcStatus>({
       path: `/jboetticher/simpleclcosmos/clprice/price/${id}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QuerySentPriceAll
+   * @request GET:/jboetticher/simpleclcosmos/clprice/sentPrice
+   */
+  querySentPriceAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.countTotal"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<ClpriceQueryAllSentPriceResponse, RpcStatus>({
+      path: `/jboetticher/simpleclcosmos/clprice/sentPrice`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QuerySentPrice
+   * @summary this line is used by starport scaffolding # 2
+   * @request GET:/jboetticher/simpleclcosmos/clprice/sentPrice/{id}
+   */
+  querySentPrice = (id: string, params: RequestParams = {}) =>
+    this.request<ClpriceQueryGetSentPriceResponse, RpcStatus>({
+      path: `/jboetticher/simpleclcosmos/clprice/sentPrice/${id}`,
       method: "GET",
       format: "json",
       ...params,

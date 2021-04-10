@@ -4,6 +4,7 @@ package jboetticher.simpleclcosmos.clprice;
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 // this line is used by starport scaffolding # 1
+import "clprice/sentPrice.proto";
 import "clprice/price.proto";
 
 option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
@@ -11,6 +12,13 @@ option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
 // Query defines the gRPC querier service.
 service Query {
     // this line is used by starport scaffolding # 2
+	rpc SentPrice(QueryGetSentPriceRequest) returns (QueryGetSentPriceResponse) {
+		option (google.api.http).get = "/jboetticher/simpleclcosmos/clprice/sentPrice/{id}";
+	}
+	rpc SentPriceAll(QueryAllSentPriceRequest) returns (QueryAllSentPriceResponse) {
+		option (google.api.http).get = "/jboetticher/simpleclcosmos/clprice/sentPrice";
+	}
+
 	rpc Price(QueryGetPriceRequest) returns (QueryGetPriceResponse) {
 		option (google.api.http).get = "/jboetticher/simpleclcosmos/clprice/price/{id}";
 	}
@@ -21,6 +29,22 @@ service Query {
 }
 
 // this line is used by starport scaffolding # 3
+message QueryGetSentPriceRequest {
+	uint64 id = 1;
+}
+
+message QueryGetSentPriceResponse {
+	SentPrice SentPrice = 1;
+}
+
+message QueryAllSentPriceRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSentPriceResponse {
+	repeated SentPrice SentPrice = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
 message QueryGetPriceRequest {
 	uint64 id = 1;
 }

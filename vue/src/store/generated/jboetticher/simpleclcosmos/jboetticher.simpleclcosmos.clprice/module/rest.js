@@ -155,11 +155,38 @@ export class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryPrice
-         * @summary this line is used by starport scaffolding # 2
          * @request GET:/jboetticher/simpleclcosmos/clprice/price/{id}
          */
         this.queryPrice = (id, params = {}) => this.request({
             path: `/jboetticher/simpleclcosmos/clprice/price/${id}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QuerySentPriceAll
+         * @request GET:/jboetticher/simpleclcosmos/clprice/sentPrice
+         */
+        this.querySentPriceAll = (query, params = {}) => this.request({
+            path: `/jboetticher/simpleclcosmos/clprice/sentPrice`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QuerySentPrice
+         * @summary this line is used by starport scaffolding # 2
+         * @request GET:/jboetticher/simpleclcosmos/clprice/sentPrice/{id}
+         */
+        this.querySentPrice = (id, params = {}) => this.request({
+            path: `/jboetticher/simpleclcosmos/clprice/sentPrice/${id}`,
             method: "GET",
             format: "json",
             ...params,

@@ -7,8 +7,8 @@ import (
 	"strconv"
 )
 
-func listPrice(ctx sdk.Context, keeper Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
-	msgs := keeper.GetAllPrice(ctx)
+func listSentPrice(ctx sdk.Context, keeper Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
+	msgs := keeper.GetAllSentPrice(ctx)
 
 	bz, err := codec.MarshalJSONIndent(legacyQuerierCdc, msgs)
 	if err != nil {
@@ -18,22 +18,17 @@ func listPrice(ctx sdk.Context, keeper Keeper, legacyQuerierCdc *codec.LegacyAmi
 	return bz, nil
 }
 
-func getPrice(ctx sdk.Context, key string, keeper Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
-
-	// TODO: this is just testing to see if i can get this to work.
-	// apparently this doesn't work for reasons unknown
-	//return []byte{ 0, 1, 0 }, nil
-
+func getSentPrice(ctx sdk.Context, key string, keeper Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
 	id, err := strconv.ParseUint(key, 10, 64)
 	if err != nil {
 		return nil, err
 	}
 
-	if !keeper.HasPrice(ctx, id) {
+	if !keeper.HasSentPrice(ctx, id) {
 		return nil, sdkerrors.ErrKeyNotFound
 	}
 
-	msg := keeper.GetPrice(ctx, id)
+	msg := keeper.GetSentPrice(ctx, id)
 
 	bz, err := codec.MarshalJSONIndent(legacyQuerierCdc, msg)
 	if err != nil {

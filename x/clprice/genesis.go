@@ -10,6 +10,14 @@ import (
 // state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
 	// this line is used by starport scaffolding # genesis/module/init
+	// Set all the sentPrice
+	for _, elem := range genState.SentPriceList {
+		k.SetSentPrice(ctx, *elem)
+	}
+
+	// Set sentPrice count
+	k.SetSentPriceCount(ctx, uint64(len(genState.SentPriceList)))
+
 	// Set all the price
 	for _, elem := range genState.PriceList {
 		k.SetPrice(ctx, *elem)
@@ -36,6 +44,13 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 
 	// this line is used by starport scaffolding # genesis/module/export
+	// Get all sentPrice
+	sentPriceList := k.GetAllSentPrice(ctx)
+	for _, elem := range sentPriceList {
+		elem := elem
+		genesis.SentPriceList = append(genesis.SentPriceList, &elem)
+	}
+
 	// Get all price
 	priceList := k.GetAllPrice(ctx)
 	for _, elem := range priceList {
