@@ -3,6 +3,7 @@ package cli
 import (
 	"github.com/spf13/cobra"
 	"strconv"
+	"time"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -15,13 +16,14 @@ var _ = strconv.Itoa(0)
 
 func CmdSendIbcPrice() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "send-ibcPrice [src-port] [src-channel] [name] [price] [date]",
-		Short: "Send a ibcPrice over IBC",
+		//Use:   "send-ibcPrice [src-port] [src-channel] [name] [price] [date]",
+		Use: "send-ibcPrice [src-port] [src-channel] [name]",
+		Short: "Send recent ibcPrice over IBC",
 		Args:  cobra.ExactArgs(5),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			argsName := string(args[2])
-			argsPrice, _ := strconv.ParseInt(args[3], 10, 64)
-			argsDate, _ := strconv.ParseInt(args[4], 10, 64)
+			argsName := string(args[2]) //string(args[2])
+			argsPrice := 50 //strconv.ParseInt(args[3], 10, 64)
+			argsDate := time.Now().Unix() //strconv.ParseInt(args[4], 10, 64)
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
