@@ -2,11 +2,13 @@ syntax = "proto3";
 package jboetticher.simpleclcosmos.clprice;
 
 // this line is used by starport scaffolding # genesis/proto/import
+import "clprice/price.proto";
 
 option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
 
 // GenesisState defines the clprice module's genesis state.
 message GenesisState {
     // this line is used by starport scaffolding # genesis/proto/state
+		repeated Price priceList = 2; // this line is used by starport scaffolding # genesis/proto/stateField
     string port_id = 1; // this line is used by starport scaffolding # genesis/proto/stateField
 }

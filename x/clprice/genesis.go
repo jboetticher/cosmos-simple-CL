@@ -10,6 +10,13 @@ import (
 // state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
 	// this line is used by starport scaffolding # genesis/module/init
+	// Set all the price
+	for _, elem := range genState.PriceList {
+		k.SetPrice(ctx, *elem)
+	}
+
+	// Set price count
+	k.SetPriceCount(ctx, uint64(len(genState.PriceList)))
 
 	k.SetPort(ctx, genState.PortId)
 	// Only try to bind to port if it is not already bound, since we may already own
@@ -29,6 +36,12 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 
 	// this line is used by starport scaffolding # genesis/module/export
+	// Get all price
+	priceList := k.GetAllPrice(ctx)
+	for _, elem := range priceList {
+		elem := elem
+		genesis.PriceList = append(genesis.PriceList, &elem)
+	}
 
 	genesis.PortId = k.GetPort(ctx)
 

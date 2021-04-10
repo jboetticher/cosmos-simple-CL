@@ -4,12 +4,36 @@ package jboetticher.simpleclcosmos.clprice;
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 // this line is used by starport scaffolding # 1
+import "clprice/price.proto";
 
 option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
 
 // Query defines the gRPC querier service.
 service Query {
     // this line is used by starport scaffolding # 2
+	rpc Price(QueryGetPriceRequest) returns (QueryGetPriceResponse) {
+		option (google.api.http).get = "/jboetticher/simpleclcosmos/clprice/price/{id}";
+	}
+	rpc PriceAll(QueryAllPriceRequest) returns (QueryAllPriceResponse) {
+		option (google.api.http).get = "/jboetticher/simpleclcosmos/clprice/price";
+	}
+
 }
 
 // this line is used by starport scaffolding # 3
+message QueryGetPriceRequest {
+	uint64 id = 1;
+}
+
+message QueryGetPriceResponse {
+	Price Price = 1;
+}
+
+message QueryAllPriceRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPriceResponse {
+	repeated Price Price = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

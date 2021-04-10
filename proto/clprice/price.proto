@@ -1,0 +1,14 @@
+syntax = "proto3";
+package jboetticher.simpleclcosmos.clprice;
+
+option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
+
+import "gogoproto/gogo.proto";
+
+message Price {
+  string creator = 1;
+  uint64 id = 2;
+  string name = 3; 
+  int32 price = 4; 
+  int32 date = 5; 
+}

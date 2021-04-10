@@ -31,3 +31,8 @@ var (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+const (
+	PriceKey      = "Price-value-"
+	PriceCountKey = "Price-count-"
+)
