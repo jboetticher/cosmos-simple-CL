@@ -47,7 +47,7 @@ func (k Keeper) AppendPrice(
 ) uint64 {
 	// Create the price
 	count := k.GetPriceCount(ctx)
-	var price = types.Price{
+	var priceObj = types.Price{
 		Creator: creator,
 		Id:      count,
 		Name:    name,
@@ -56,8 +56,8 @@ func (k Keeper) AppendPrice(
 	}
 
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.PriceKey))
-	value := k.cdc.MustMarshalBinaryBare(&price)
-	store.Set(GetPriceIDBytes(price.Id), value)
+	value := k.cdc.MustMarshalBinaryBare(&priceObj)
+	store.Set(GetPriceIDBytes(priceObj.Id), value)
 
 	// Update price count
 	k.SetPriceCount(ctx, count+1)
