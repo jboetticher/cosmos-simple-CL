@@ -105,7 +105,14 @@ func (k Keeper) OnAcknowledgementIbcPricePacket(ctx sdk.Context, packet channelt
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// successful acknowledgement logic
+		k.AppendSentPrice(
+			ctx,
+			packet.SourcePort+"-"+packet.SourceChannel+"-"+string(data.Date),
+			packetAck.PriceID,
+			data.Name,
+			packet.DestinationPort+"-"+packet.DestinationChannel,
+		)
 
 		return nil
 	default:
