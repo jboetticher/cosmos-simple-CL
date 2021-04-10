@@ -110,6 +110,7 @@ func (k Keeper) OnAcknowledgementIbcPricePacket(ctx sdk.Context, packet channelt
 func (k Keeper) OnTimeoutIbcPricePacket(ctx sdk.Context, packet channeltypes.Packet, data types.IbcPricePacketData) error {
 
 	// TODO: packet timeout logic
+	// why should we care if they timeout or not? I certainly don't.
 
 	return nil
 }
