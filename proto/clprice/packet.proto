@@ -17,7 +17,7 @@ message NoData {
 // this line is used by starport scaffolding # ibc/packet/proto/message
 // IbcPricePacketData defines a struct for the packet payload
 message IbcPricePacketData {
-	  string name = 1;
+  string name = 1;
   int32 price = 2;
   int32 date = 3;
 }

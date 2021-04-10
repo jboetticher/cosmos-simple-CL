@@ -74,6 +74,14 @@ func (k Keeper) OnRecvIbcPricePacket(ctx sdk.Context, packet channeltypes.Packet
 	}
 
 	// TODO: packet reception logic
+	id := k.AppendPrice(
+		ctx,
+		packet.SourcePort+"-"+packet.SourceChannel+"-"+string(data.Date),
+		data.Name,
+		data.Price,
+		data.Date,
+	)
+	packetAck.PriceID = string(id);
 
 	return packetAck, nil
 }
