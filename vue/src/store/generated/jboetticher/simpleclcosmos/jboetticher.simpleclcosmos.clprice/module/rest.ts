@@ -23,6 +23,8 @@ export type ClpriceMsgDeletePriceResponse = object;
 
 export type ClpriceMsgDeleteSentPriceResponse = object;
 
+export type ClpriceMsgSendIbcPriceResponse = object;
+
 export type ClpriceMsgUpdatePriceResponse = object;
 
 export type ClpriceMsgUpdateSentPriceResponse = object;

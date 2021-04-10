@@ -2,6 +2,220 @@
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
 export const protobufPackage = "jboetticher.simpleclcosmos.clprice";
+const baseMsgSendIbcPrice = {
+    sender: "",
+    port: "",
+    channelID: "",
+    timeoutTimestamp: 0,
+    name: "",
+    price: 0,
+    date: 0,
+};
+export const MsgSendIbcPrice = {
+    encode(message, writer = Writer.create()) {
+        if (message.sender !== "") {
+            writer.uint32(10).string(message.sender);
+        }
+        if (message.port !== "") {
+            writer.uint32(18).string(message.port);
+        }
+        if (message.channelID !== "") {
+            writer.uint32(26).string(message.channelID);
+        }
+        if (message.timeoutTimestamp !== 0) {
+            writer.uint32(32).uint64(message.timeoutTimestamp);
+        }
+        if (message.name !== "") {
+            writer.uint32(42).string(message.name);
+        }
+        if (message.price !== 0) {
+            writer.uint32(48).int32(message.price);
+        }
+        if (message.date !== 0) {
+            writer.uint32(56).int32(message.date);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgSendIbcPrice };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.sender = reader.string();
+                    break;
+                case 2:
+                    message.port = reader.string();
+                    break;
+                case 3:
+                    message.channelID = reader.string();
+                    break;
+                case 4:
+                    message.timeoutTimestamp = longToNumber(reader.uint64());
+                    break;
+                case 5:
+                    message.name = reader.string();
+                    break;
+                case 6:
+                    message.price = reader.int32();
+                    break;
+                case 7:
+                    message.date = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgSendIbcPrice };
+        if (object.sender !== undefined && object.sender !== null) {
+            message.sender = String(object.sender);
+        }
+        else {
+            message.sender = "";
+        }
+        if (object.port !== undefined && object.port !== null) {
+            message.port = String(object.port);
+        }
+        else {
+            message.port = "";
+        }
+        if (object.channelID !== undefined && object.channelID !== null) {
+            message.channelID = String(object.channelID);
+        }
+        else {
+            message.channelID = "";
+        }
+        if (object.timeoutTimestamp !== undefined &&
+            object.timeoutTimestamp !== null) {
+            message.timeoutTimestamp = Number(object.timeoutTimestamp);
+        }
+        else {
+            message.timeoutTimestamp = 0;
+        }
+        if (object.name !== undefined && object.name !== null) {
+            message.name = String(object.name);
+        }
+        else {
+            message.name = "";
+        }
+        if (object.price !== undefined && object.price !== null) {
+            message.price = Number(object.price);
+        }
+        else {
+            message.price = 0;
+        }
+        if (object.date !== undefined && object.date !== null) {
+            message.date = Number(object.date);
+        }
+        else {
+            message.date = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.sender !== undefined && (obj.sender = message.sender);
+        message.port !== undefined && (obj.port = message.port);
+        message.channelID !== undefined && (obj.channelID = message.channelID);
+        message.timeoutTimestamp !== undefined &&
+            (obj.timeoutTimestamp = message.timeoutTimestamp);
+        message.name !== undefined && (obj.name = message.name);
+        message.price !== undefined && (obj.price = message.price);
+        message.date !== undefined && (obj.date = message.date);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgSendIbcPrice };
+        if (object.sender !== undefined && object.sender !== null) {
+            message.sender = object.sender;
+        }
+        else {
+            message.sender = "";
+        }
+        if (object.port !== undefined && object.port !== null) {
+            message.port = object.port;
+        }
+        else {
+            message.port = "";
+        }
+        if (object.channelID !== undefined && object.channelID !== null) {
+            message.channelID = object.channelID;
+        }
+        else {
+            message.channelID = "";
+        }
+        if (object.timeoutTimestamp !== undefined &&
+            object.timeoutTimestamp !== null) {
+            message.timeoutTimestamp = object.timeoutTimestamp;
+        }
+        else {
+            message.timeoutTimestamp = 0;
+        }
+        if (object.name !== undefined && object.name !== null) {
+            message.name = object.name;
+        }
+        else {
+            message.name = "";
+        }
+        if (object.price !== undefined && object.price !== null) {
+            message.price = object.price;
+        }
+        else {
+            message.price = 0;
+        }
+        if (object.date !== undefined && object.date !== null) {
+            message.date = object.date;
+        }
+        else {
+            message.date = 0;
+        }
+        return message;
+    },
+};
+const baseMsgSendIbcPriceResponse = {};
+export const MsgSendIbcPriceResponse = {
+    encode(_, writer = Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = {
+            ...baseMsgSendIbcPriceResponse,
+        };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = {
+            ...baseMsgSendIbcPriceResponse,
+        };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = {
+            ...baseMsgSendIbcPriceResponse,
+        };
+        return message;
+    },
+};
 const baseMsgCreateSentPrice = {
     creator: "",
     priceID: "",
@@ -880,6 +1094,11 @@ export const MsgDeletePriceResponse = {
 export class MsgClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
+    }
+    SendIbcPrice(request) {
+        const data = MsgSendIbcPrice.encode(request).finish();
+        const promise = this.rpc.request("jboetticher.simpleclcosmos.clprice.Msg", "SendIbcPrice", data);
+        return promise.then((data) => MsgSendIbcPriceResponse.decode(new Reader(data)));
     }
     CreateSentPrice(request) {
         const data = MsgCreateSentPrice.encode(request).finish();

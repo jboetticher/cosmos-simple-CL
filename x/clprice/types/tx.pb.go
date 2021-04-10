@@ -28,6 +28,134 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // this line is used by starport scaffolding # proto/tx/message
+type MsgSendIbcPrice struct {
+	Sender           string `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
+	Port             string `protobuf:"bytes,2,opt,name=port,proto3" json:"port,omitempty"`
+	ChannelID        string `protobuf:"bytes,3,opt,name=channelID,proto3" json:"channelID,omitempty"`
+	TimeoutTimestamp uint64 `protobuf:"varint,4,opt,name=timeoutTimestamp,proto3" json:"timeoutTimestamp,omitempty"`
+	Name             string `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Price            int32  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	Date             int32  `protobuf:"varint,7,opt,name=date,proto3" json:"date,omitempty"`
+}
+
+func (m *MsgSendIbcPrice) Reset()         { *m = MsgSendIbcPrice{} }
+func (m *MsgSendIbcPrice) String() string { return proto.CompactTextString(m) }
+func (*MsgSendIbcPrice) ProtoMessage()    {}
+func (*MsgSendIbcPrice) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a78c8abb8f20c516, []int{0}
+}
+func (m *MsgSendIbcPrice) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendIbcPrice) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendIbcPrice.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendIbcPrice) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendIbcPrice.Merge(m, src)
+}
+func (m *MsgSendIbcPrice) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendIbcPrice) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendIbcPrice.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendIbcPrice proto.InternalMessageInfo
+
+func (m *MsgSendIbcPrice) GetSender() string {
+	if m != nil {
+		return m.Sender
+	}
+	return ""
+}
+
+func (m *MsgSendIbcPrice) GetPort() string {
+	if m != nil {
+		return m.Port
+	}
+	return ""
+}
+
+func (m *MsgSendIbcPrice) GetChannelID() string {
+	if m != nil {
+		return m.ChannelID
+	}
+	return ""
+}
+
+func (m *MsgSendIbcPrice) GetTimeoutTimestamp() uint64 {
+	if m != nil {
+		return m.TimeoutTimestamp
+	}
+	return 0
+}
+
+func (m *MsgSendIbcPrice) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MsgSendIbcPrice) GetPrice() int32 {
+	if m != nil {
+		return m.Price
+	}
+	return 0
+}
+
+func (m *MsgSendIbcPrice) GetDate() int32 {
+	if m != nil {
+		return m.Date
+	}
+	return 0
+}
+
+type MsgSendIbcPriceResponse struct {
+}
+
+func (m *MsgSendIbcPriceResponse) Reset()         { *m = MsgSendIbcPriceResponse{} }
+func (m *MsgSendIbcPriceResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgSendIbcPriceResponse) ProtoMessage()    {}
+func (*MsgSendIbcPriceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a78c8abb8f20c516, []int{1}
+}
+func (m *MsgSendIbcPriceResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendIbcPriceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendIbcPriceResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendIbcPriceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendIbcPriceResponse.Merge(m, src)
+}
+func (m *MsgSendIbcPriceResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendIbcPriceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendIbcPriceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendIbcPriceResponse proto.InternalMessageInfo
+
 type MsgCreateSentPrice struct {
 	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
 	PriceID string `protobuf:"bytes,2,opt,name=priceID,proto3" json:"priceID,omitempty"`
@@ -39,7 +167,7 @@ func (m *MsgCreateSentPrice) Reset()         { *m = MsgCreateSentPrice{} }
 func (m *MsgCreateSentPrice) String() string { return proto.CompactTextString(m) }
 func (*MsgCreateSentPrice) ProtoMessage()    {}
 func (*MsgCreateSentPrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{0}
+	return fileDescriptor_a78c8abb8f20c516, []int{2}
 }
 func (m *MsgCreateSentPrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -104,7 +232,7 @@ func (m *MsgCreateSentPriceResponse) Reset()         { *m = MsgCreateSentPriceRe
 func (m *MsgCreateSentPriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgCreateSentPriceResponse) ProtoMessage()    {}
 func (*MsgCreateSentPriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{1}
+	return fileDescriptor_a78c8abb8f20c516, []int{3}
 }
 func (m *MsgCreateSentPriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -152,7 +280,7 @@ func (m *MsgUpdateSentPrice) Reset()         { *m = MsgUpdateSentPrice{} }
 func (m *MsgUpdateSentPrice) String() string { return proto.CompactTextString(m) }
 func (*MsgUpdateSentPrice) ProtoMessage()    {}
 func (*MsgUpdateSentPrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{2}
+	return fileDescriptor_a78c8abb8f20c516, []int{4}
 }
 func (m *MsgUpdateSentPrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -223,7 +351,7 @@ func (m *MsgUpdateSentPriceResponse) Reset()         { *m = MsgUpdateSentPriceRe
 func (m *MsgUpdateSentPriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgUpdateSentPriceResponse) ProtoMessage()    {}
 func (*MsgUpdateSentPriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{3}
+	return fileDescriptor_a78c8abb8f20c516, []int{5}
 }
 func (m *MsgUpdateSentPriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -261,7 +389,7 @@ func (m *MsgDeleteSentPrice) Reset()         { *m = MsgDeleteSentPrice{} }
 func (m *MsgDeleteSentPrice) String() string { return proto.CompactTextString(m) }
 func (*MsgDeleteSentPrice) ProtoMessage()    {}
 func (*MsgDeleteSentPrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{4}
+	return fileDescriptor_a78c8abb8f20c516, []int{6}
 }
 func (m *MsgDeleteSentPrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -311,7 +439,7 @@ func (m *MsgDeleteSentPriceResponse) Reset()         { *m = MsgDeleteSentPriceRe
 func (m *MsgDeleteSentPriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgDeleteSentPriceResponse) ProtoMessage()    {}
 func (*MsgDeleteSentPriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{5}
+	return fileDescriptor_a78c8abb8f20c516, []int{7}
 }
 func (m *MsgDeleteSentPriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -351,7 +479,7 @@ func (m *MsgCreatePrice) Reset()         { *m = MsgCreatePrice{} }
 func (m *MsgCreatePrice) String() string { return proto.CompactTextString(m) }
 func (*MsgCreatePrice) ProtoMessage()    {}
 func (*MsgCreatePrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{6}
+	return fileDescriptor_a78c8abb8f20c516, []int{8}
 }
 func (m *MsgCreatePrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -416,7 +544,7 @@ func (m *MsgCreatePriceResponse) Reset()         { *m = MsgCreatePriceResponse{}
 func (m *MsgCreatePriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgCreatePriceResponse) ProtoMessage()    {}
 func (*MsgCreatePriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{7}
+	return fileDescriptor_a78c8abb8f20c516, []int{9}
 }
 func (m *MsgCreatePriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -464,7 +592,7 @@ func (m *MsgUpdatePrice) Reset()         { *m = MsgUpdatePrice{} }
 func (m *MsgUpdatePrice) String() string { return proto.CompactTextString(m) }
 func (*MsgUpdatePrice) ProtoMessage()    {}
 func (*MsgUpdatePrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{8}
+	return fileDescriptor_a78c8abb8f20c516, []int{10}
 }
 func (m *MsgUpdatePrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -535,7 +663,7 @@ func (m *MsgUpdatePriceResponse) Reset()         { *m = MsgUpdatePriceResponse{}
 func (m *MsgUpdatePriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgUpdatePriceResponse) ProtoMessage()    {}
 func (*MsgUpdatePriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{9}
+	return fileDescriptor_a78c8abb8f20c516, []int{11}
 }
 func (m *MsgUpdatePriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -573,7 +701,7 @@ func (m *MsgDeletePrice) Reset()         { *m = MsgDeletePrice{} }
 func (m *MsgDeletePrice) String() string { return proto.CompactTextString(m) }
 func (*MsgDeletePrice) ProtoMessage()    {}
 func (*MsgDeletePrice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{10}
+	return fileDescriptor_a78c8abb8f20c516, []int{12}
 }
 func (m *MsgDeletePrice) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -623,7 +751,7 @@ func (m *MsgDeletePriceResponse) Reset()         { *m = MsgDeletePriceResponse{}
 func (m *MsgDeletePriceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgDeletePriceResponse) ProtoMessage()    {}
 func (*MsgDeletePriceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a78c8abb8f20c516, []int{11}
+	return fileDescriptor_a78c8abb8f20c516, []int{13}
 }
 func (m *MsgDeletePriceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -653,6 +781,8 @@ func (m *MsgDeletePriceResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgDeletePriceResponse proto.InternalMessageInfo
 
 func init() {
+	proto.RegisterType((*MsgSendIbcPrice)(nil), "jboetticher.simpleclcosmos.clprice.MsgSendIbcPrice")
+	proto.RegisterType((*MsgSendIbcPriceResponse)(nil), "jboetticher.simpleclcosmos.clprice.MsgSendIbcPriceResponse")
 	proto.RegisterType((*MsgCreateSentPrice)(nil), "jboetticher.simpleclcosmos.clprice.MsgCreateSentPrice")
 	proto.RegisterType((*MsgCreateSentPriceResponse)(nil), "jboetticher.simpleclcosmos.clprice.MsgCreateSentPriceResponse")
 	proto.RegisterType((*MsgUpdateSentPrice)(nil), "jboetticher.simpleclcosmos.clprice.MsgUpdateSentPrice")
@@ -670,37 +800,44 @@ func init() {
 func init() { proto.RegisterFile("clprice/tx.proto", fileDescriptor_a78c8abb8f20c516) }
 
 var fileDescriptor_a78c8abb8f20c516 = []byte{
-	// 470 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x95, 0x3f, 0xcf, 0x93, 0x40,
-	0x1c, 0xc7, 0x0b, 0x85, 0x1a, 0xcf, 0xa4, 0x9a, 0x8b, 0x31, 0xa4, 0x31, 0xc4, 0x30, 0x75, 0x30,
-	0x90, 0x60, 0x74, 0xe8, 0xd0, 0x41, 0xbb, 0x38, 0x34, 0x1a, 0x8c, 0x8b, 0x5b, 0x7b, 0xbd, 0x14,
-	0x0c, 0x70, 0x84, 0xc3, 0xa4, 0x0e, 0x2e, 0x6e, 0x6e, 0xbe, 0x0a, 0x5f, 0x8b, 0x63, 0xc7, 0x67,
-	0x7c, 0xd2, 0xbe, 0x91, 0x27, 0xfc, 0xae, 0x90, 0x2b, 0x85, 0x94, 0xeb, 0xc6, 0x1d, 0xfc, 0xbe,
-	0xdf, 0xcf, 0xef, 0x5f, 0x40, 0xcf, 0x48, 0x9c, 0xe5, 0x11, 0xa1, 0x5e, 0xb1, 0x73, 0xb3, 0x9c,
-	0x15, 0x0c, 0x3b, 0xdf, 0xd7, 0x8c, 0x16, 0x45, 0x44, 0x42, 0x9a, 0xbb, 0x3c, 0x4a, 0xb2, 0x98,
-	0x92, 0x98, 0x30, 0x9e, 0x30, 0xee, 0x9e, 0x3e, 0x76, 0x72, 0x84, 0x97, 0x7c, 0xfb, 0x21, 0xa7,
-	0xab, 0x82, 0x7e, 0xa1, 0x69, 0xf1, 0xb9, 0xbc, 0xc5, 0x16, 0x7a, 0x44, 0xca, 0x2b, 0x96, 0x5b,
-	0xda, 0x2b, 0x6d, 0xfa, 0x38, 0xa8, 0x8e, 0xe5, 0x1b, 0x08, 0xfc, 0xb8, 0xb0, 0x74, 0xf1, 0xe6,
-	0x74, 0xc4, 0x18, 0x19, 0xe9, 0x2a, 0xa1, 0xd6, 0x10, 0xae, 0xe1, 0x19, 0x3f, 0x47, 0x26, 0x09,
-	0x57, 0x51, 0x6a, 0x19, 0x70, 0x29, 0x0e, 0xce, 0x6b, 0x34, 0xb9, 0xf4, 0x0c, 0x28, 0xcf, 0x58,
-	0xca, 0x29, 0x1e, 0x23, 0x3d, 0xda, 0x80, 0xad, 0x11, 0xe8, 0xd1, 0xc6, 0xf9, 0xad, 0x01, 0xe2,
-	0xd7, 0x6c, 0xd3, 0x13, 0x51, 0x08, 0xe8, 0x95, 0x80, 0x8c, 0x3c, 0x6c, 0x47, 0x36, 0xda, 0x90,
-	0x4d, 0x19, 0xf9, 0x25, 0x20, 0x37, 0x18, 0x2a, 0x64, 0x67, 0x0e, 0x84, 0x0b, 0x1a, 0xd3, 0x9b,
-	0x08, 0x4f, 0xea, 0x8d, 0xf8, 0x5a, 0x3d, 0x44, 0xe3, 0xba, 0x5c, 0xd7, 0x94, 0xab, 0x8c, 0xf4,
-	0xf3, 0x8c, 0x20, 0x61, 0xc8, 0xde, 0x0c, 0xc4, 0xa1, 0xfc, 0xb2, 0x4c, 0x06, 0x72, 0x37, 0x03,
-	0x78, 0x76, 0xa6, 0xe8, 0xc5, 0xb9, 0x53, 0x67, 0x53, 0x76, 0xc0, 0x24, 0xea, 0xa1, 0xda, 0x8f,
-	0x8e, 0x41, 0x11, 0x8c, 0x46, 0x1b, 0xa3, 0x29, 0x31, 0x5a, 0xc0, 0x28, 0x39, 0xd7, 0x75, 0x9a,
-	0x01, 0x93, 0xa8, 0xa2, 0x6a, 0x07, 0x84, 0xaa, 0x14, 0x5b, 0xa9, 0xfa, 0xff, 0x46, 0x68, 0xb8,
-	0xe4, 0x5b, 0xfc, 0x47, 0x43, 0x4f, 0x9b, 0x6b, 0xf2, 0xce, 0xbd, 0xbe, 0x61, 0xee, 0xe5, 0xa8,
-	0x4f, 0xe6, 0xb7, 0xc5, 0xd5, 0xdd, 0x28, 0x59, 0x9a, 0xfb, 0xd0, 0x97, 0xa5, 0x11, 0xd7, 0x9b,
-	0xa5, 0x63, 0xf6, 0x81, 0xa5, 0x39, 0xf9, 0x7d, 0x59, 0x1a, 0x71, 0xbd, 0x59, 0x3a, 0x36, 0x05,
-	0xff, 0x42, 0x4f, 0xe4, 0x35, 0xf1, 0x95, 0xca, 0x2c, 0x10, 0x66, 0xea, 0x31, 0xb2, 0xbd, 0xbc,
-	0x11, 0xbe, 0x52, 0x65, 0xd5, 0xec, 0x5b, 0xe6, 0xbf, 0xb4, 0x97, 0x87, 0xdf, 0x57, 0x2a, 0xa6,
-	0x9a, 0x7d, 0xcb, 0xa2, 0xbc, 0xff, 0xf4, 0xff, 0x60, 0x6b, 0xfb, 0x83, 0xad, 0xdd, 0x1f, 0x6c,
-	0xed, 0xef, 0xd1, 0x1e, 0xec, 0x8f, 0xf6, 0xe0, 0xee, 0x68, 0x0f, 0xbe, 0xbd, 0xdd, 0x46, 0x45,
-	0xf8, 0x63, 0xed, 0x12, 0x96, 0x78, 0x92, 0xbe, 0x77, 0xae, 0xef, 0xed, 0xbc, 0xfa, 0x0f, 0xf6,
-	0x33, 0xa3, 0x7c, 0x3d, 0x82, 0xbf, 0xd8, 0x9b, 0x87, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9f, 0x07,
-	0xb5, 0xc9, 0xd9, 0x06, 0x00, 0x00,
+	// 585 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x96, 0xc1, 0x8b, 0xd3, 0x4e,
+	0x14, 0xc7, 0x3b, 0x6d, 0xda, 0xd2, 0xf9, 0xfd, 0xd8, 0x5d, 0x06, 0x59, 0x63, 0x59, 0x42, 0xc9,
+	0xa9, 0x88, 0xa4, 0xd0, 0x45, 0x0f, 0x2b, 0xec, 0x41, 0x7b, 0xe9, 0xa1, 0x28, 0x59, 0xbd, 0x78,
+	0x4b, 0x93, 0x47, 0x1b, 0x69, 0x32, 0x21, 0x33, 0x0b, 0xf5, 0x20, 0x88, 0x37, 0x6f, 0xfe, 0x1b,
+	0xfe, 0x21, 0x82, 0xc7, 0x3d, 0x7a, 0x94, 0xf6, 0x1f, 0x91, 0xcc, 0x34, 0x71, 0x3a, 0x9b, 0xb2,
+	0x49, 0x6f, 0x33, 0x2f, 0x79, 0xdf, 0xf7, 0x79, 0x6f, 0xe6, 0x1b, 0x82, 0xcf, 0xfc, 0x55, 0x92,
+	0x86, 0x3e, 0x8c, 0xf8, 0xda, 0x49, 0x52, 0xca, 0x29, 0xb1, 0x3f, 0xce, 0x29, 0x70, 0x1e, 0xfa,
+	0x4b, 0x48, 0x1d, 0x16, 0x46, 0xc9, 0x0a, 0xfc, 0x95, 0x4f, 0x59, 0x44, 0x99, 0xb3, 0x7b, 0xd9,
+	0xfe, 0x89, 0xf0, 0xe9, 0x8c, 0x2d, 0x6e, 0x20, 0x0e, 0xa6, 0x73, 0xff, 0x6d, 0x16, 0x23, 0xe7,
+	0xb8, 0xc3, 0x20, 0x0e, 0x20, 0x35, 0xd1, 0x00, 0x0d, 0x7b, 0xee, 0x6e, 0x47, 0x08, 0x36, 0x12,
+	0x9a, 0x72, 0xb3, 0x29, 0xa2, 0x62, 0x4d, 0x2e, 0x70, 0xcf, 0x5f, 0x7a, 0x71, 0x0c, 0xab, 0xe9,
+	0xc4, 0x6c, 0x89, 0x07, 0xff, 0x02, 0xe4, 0x29, 0x3e, 0xe3, 0x61, 0x04, 0xf4, 0x96, 0xbf, 0x0b,
+	0x23, 0x60, 0xdc, 0x8b, 0x12, 0xd3, 0x18, 0xa0, 0xa1, 0xe1, 0xde, 0x8b, 0x67, 0xea, 0xb1, 0x17,
+	0x81, 0xd9, 0x96, 0xea, 0xd9, 0x9a, 0x3c, 0xc2, 0x6d, 0x81, 0x69, 0x76, 0x06, 0x68, 0xd8, 0x76,
+	0xe5, 0x26, 0x7b, 0x33, 0xf0, 0x38, 0x98, 0x5d, 0x11, 0x14, 0x6b, 0xfb, 0x09, 0x7e, 0xac, 0xb5,
+	0xe1, 0x02, 0x4b, 0x68, 0xcc, 0xc0, 0x4e, 0x31, 0x99, 0xb1, 0xc5, 0xeb, 0x14, 0x3c, 0x0e, 0x37,
+	0x10, 0x73, 0xd9, 0xa4, 0x89, 0xbb, 0x7e, 0x16, 0xa2, 0x79, 0x97, 0xf9, 0x36, 0x7b, 0x22, 0xea,
+	0x4c, 0x27, 0xbb, 0x4e, 0xf3, 0x6d, 0x81, 0xd8, 0xda, 0x47, 0xf4, 0x97, 0x5e, 0x18, 0x8b, 0xbe,
+	0x7a, 0xae, 0xdc, 0xd8, 0xcf, 0x70, 0xff, 0x7e, 0xcd, 0x9c, 0x88, 0x9c, 0xe0, 0x66, 0x18, 0x88,
+	0xb2, 0x86, 0xdb, 0x0c, 0x03, 0xfb, 0x2b, 0x12, 0x88, 0xef, 0x93, 0xa0, 0x22, 0xa2, 0x14, 0x68,
+	0xe6, 0x02, 0x2a, 0x72, 0xab, 0x1c, 0xd9, 0x28, 0x43, 0x6e, 0xab, 0xc8, 0x17, 0x02, 0x59, 0x63,
+	0x28, 0x86, 0x78, 0x2d, 0x08, 0x27, 0xb0, 0x82, 0xa3, 0x08, 0x77, 0xea, 0x5a, 0x7e, 0xa1, 0xbe,
+	0xc4, 0x27, 0xc5, 0xb8, 0x1e, 0x52, 0xce, 0x3b, 0x6a, 0x96, 0xdd, 0x93, 0x56, 0xd9, 0x3d, 0x31,
+	0x94, 0x7b, 0x32, 0xc4, 0xe7, 0xfb, 0x95, 0x0e, 0x1e, 0xca, 0x5a, 0x30, 0xc9, 0x79, 0xd4, 0x3d,
+	0x8f, 0x03, 0x17, 0x45, 0x32, 0x1a, 0x65, 0x8c, 0x6d, 0x85, 0xd1, 0x14, 0x8c, 0x4a, 0xe5, 0x62,
+	0x4e, 0x57, 0x82, 0x49, 0x4e, 0xb1, 0xee, 0x09, 0x48, 0x55, 0x25, 0x37, 0x57, 0x1d, 0xff, 0xe8,
+	0xe2, 0xd6, 0x8c, 0x2d, 0xc8, 0x17, 0x84, 0xff, 0xdf, 0xfb, 0x10, 0x5c, 0x3a, 0x0f, 0x7f, 0x41,
+	0x1c, 0xcd, 0x76, 0xfd, 0x97, 0x47, 0x24, 0x15, 0x87, 0xf0, 0x0d, 0xe1, 0x53, 0xdd, 0xa9, 0x2f,
+	0x2a, 0x0a, 0x6a, 0x79, 0xfd, 0xeb, 0xe3, 0xf2, 0xf6, 0x58, 0x74, 0x4b, 0x56, 0x65, 0xd1, 0xf2,
+	0x2a, 0xb3, 0x1c, 0xb0, 0x9f, 0x60, 0xd1, 0xcd, 0x57, 0x95, 0x45, 0xcb, 0xab, 0xcc, 0x72, 0xc0,
+	0xac, 0xe4, 0x33, 0xfe, 0x4f, 0x75, 0xea, 0xb8, 0xd6, 0x98, 0x25, 0xc2, 0x55, 0xfd, 0x1c, 0xb5,
+	0xbc, 0x6a, 0xca, 0x71, 0xad, 0xc9, 0xd6, 0x2b, 0x5f, 0x62, 0xc1, 0xac, 0xbc, 0xea, 0xbf, 0x71,
+	0xad, 0x61, 0xd6, 0x2b, 0x5f, 0xe2, 0xd5, 0x57, 0x6f, 0x7e, 0x6d, 0x2c, 0x74, 0xb7, 0xb1, 0xd0,
+	0x9f, 0x8d, 0x85, 0xbe, 0x6f, 0xad, 0xc6, 0xdd, 0xd6, 0x6a, 0xfc, 0xde, 0x5a, 0x8d, 0x0f, 0xcf,
+	0x17, 0x21, 0x5f, 0xde, 0xce, 0x1d, 0x9f, 0x46, 0x23, 0x45, 0x7f, 0xb4, 0xaf, 0x3f, 0x5a, 0x8f,
+	0x8a, 0xff, 0x84, 0x4f, 0x09, 0xb0, 0x79, 0x47, 0xfc, 0x2b, 0x5c, 0xfe, 0x0d, 0x00, 0x00, 0xff,
+	0xff, 0x3f, 0x01, 0x60, 0x62, 0x3f, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -716,6 +853,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
 	// this line is used by starport scaffolding # proto/tx/rpc
+	SendIbcPrice(ctx context.Context, in *MsgSendIbcPrice, opts ...grpc.CallOption) (*MsgSendIbcPriceResponse, error)
 	CreateSentPrice(ctx context.Context, in *MsgCreateSentPrice, opts ...grpc.CallOption) (*MsgCreateSentPriceResponse, error)
 	UpdateSentPrice(ctx context.Context, in *MsgUpdateSentPrice, opts ...grpc.CallOption) (*MsgUpdateSentPriceResponse, error)
 	DeleteSentPrice(ctx context.Context, in *MsgDeleteSentPrice, opts ...grpc.CallOption) (*MsgDeleteSentPriceResponse, error)
@@ -730,6 +868,15 @@ type msgClient struct {
 
 func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 	return &msgClient{cc}
+}
+
+func (c *msgClient) SendIbcPrice(ctx context.Context, in *MsgSendIbcPrice, opts ...grpc.CallOption) (*MsgSendIbcPriceResponse, error) {
+	out := new(MsgSendIbcPriceResponse)
+	err := c.cc.Invoke(ctx, "/jboetticher.simpleclcosmos.clprice.Msg/SendIbcPrice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *msgClient) CreateSentPrice(ctx context.Context, in *MsgCreateSentPrice, opts ...grpc.CallOption) (*MsgCreateSentPriceResponse, error) {
@@ -789,6 +936,7 @@ func (c *msgClient) DeletePrice(ctx context.Context, in *MsgDeletePrice, opts ..
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// this line is used by starport scaffolding # proto/tx/rpc
+	SendIbcPrice(context.Context, *MsgSendIbcPrice) (*MsgSendIbcPriceResponse, error)
 	CreateSentPrice(context.Context, *MsgCreateSentPrice) (*MsgCreateSentPriceResponse, error)
 	UpdateSentPrice(context.Context, *MsgUpdateSentPrice) (*MsgUpdateSentPriceResponse, error)
 	DeleteSentPrice(context.Context, *MsgDeleteSentPrice) (*MsgDeleteSentPriceResponse, error)
@@ -801,6 +949,9 @@ type MsgServer interface {
 type UnimplementedMsgServer struct {
 }
 
+func (*UnimplementedMsgServer) SendIbcPrice(ctx context.Context, req *MsgSendIbcPrice) (*MsgSendIbcPriceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendIbcPrice not implemented")
+}
 func (*UnimplementedMsgServer) CreateSentPrice(ctx context.Context, req *MsgCreateSentPrice) (*MsgCreateSentPriceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSentPrice not implemented")
 }
@@ -822,6 +973,24 @@ func (*UnimplementedMsgServer) DeletePrice(ctx context.Context, req *MsgDeletePr
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
+}
+
+func _Msg_SendIbcPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSendIbcPrice)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SendIbcPrice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/jboetticher.simpleclcosmos.clprice.Msg/SendIbcPrice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SendIbcPrice(ctx, req.(*MsgSendIbcPrice))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Msg_CreateSentPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -937,6 +1106,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "SendIbcPrice",
+			Handler:    _Msg_SendIbcPrice_Handler,
+		},
+		{
 			MethodName: "CreateSentPrice",
 			Handler:    _Msg_CreateSentPrice_Handler,
 		},
@@ -963,6 +1136,95 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "clprice/tx.proto",
+}
+
+func (m *MsgSendIbcPrice) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendIbcPrice) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendIbcPrice) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Date != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Date))
+		i--
+		dAtA[i] = 0x38
+	}
+	if m.Price != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Price))
+		i--
+		dAtA[i] = 0x30
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.TimeoutTimestamp != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.TimeoutTimestamp))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.ChannelID) > 0 {
+		i -= len(m.ChannelID)
+		copy(dAtA[i:], m.ChannelID)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ChannelID)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Port) > 0 {
+		i -= len(m.Port)
+		copy(dAtA[i:], m.Port)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Port)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Sender) > 0 {
+		i -= len(m.Sender)
+		copy(dAtA[i:], m.Sender)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Sender)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgSendIbcPriceResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendIbcPriceResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendIbcPriceResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
 }
 
 func (m *MsgCreateSentPrice) Marshal() (dAtA []byte, err error) {
@@ -1400,6 +1662,49 @@ func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *MsgSendIbcPrice) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Sender)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Port)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ChannelID)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.TimeoutTimestamp != 0 {
+		n += 1 + sovTx(uint64(m.TimeoutTimestamp))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.Price != 0 {
+		n += 1 + sovTx(uint64(m.Price))
+	}
+	if m.Date != 0 {
+		n += 1 + sovTx(uint64(m.Date))
+	}
+	return n
+}
+
+func (m *MsgSendIbcPriceResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
 func (m *MsgCreateSentPrice) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1599,6 +1904,291 @@ func sovTx(x uint64) (n int) {
 }
 func sozTx(x uint64) (n int) {
 	return sovTx(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *MsgSendIbcPrice) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendIbcPrice: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendIbcPrice: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Sender = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Port = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChannelID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChannelID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TimeoutTimestamp", wireType)
+			}
+			m.TimeoutTimestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.TimeoutTimestamp |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			m.Price = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Price |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Date", wireType)
+			}
+			m.Date = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Date |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSendIbcPriceResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendIbcPriceResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendIbcPriceResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *MsgCreateSentPrice) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)

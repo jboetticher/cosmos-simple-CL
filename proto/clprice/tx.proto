@@ -8,6 +8,7 @@ option go_package = "github.com/jboetticher/simpleclcosmos/x/clprice/types";
 // Msg defines the Msg service.
 service Msg {
     // this line is used by starport scaffolding # proto/tx/rpc
+  rpc SendIbcPrice(MsgSendIbcPrice) returns (MsgSendIbcPriceResponse);
   rpc CreateSentPrice(MsgCreateSentPrice) returns (MsgCreateSentPriceResponse);
   rpc UpdateSentPrice(MsgUpdateSentPrice) returns (MsgUpdateSentPriceResponse);
   rpc DeleteSentPrice(MsgDeleteSentPrice) returns (MsgDeleteSentPriceResponse);
@@ -17,6 +18,19 @@ service Msg {
 }
 
 // this line is used by starport scaffolding # proto/tx/message
+message MsgSendIbcPrice {
+  string sender = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  string name = 5;
+  int32 price = 6;
+  int32 date = 7;
+}
+
+message MsgSendIbcPriceResponse {
+}
+
 message MsgCreateSentPrice {
   string creator = 1;
   string priceID = 2;

@@ -25,6 +25,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type ClpricePacketData struct {
 	// Types that are valid to be assigned to Packet:
 	//	*ClpricePacketData_NoData
+	//	*ClpricePacketData_IbcPricePacket
 	Packet isClpricePacketData_Packet `protobuf_oneof:"packet"`
 }
 
@@ -70,8 +71,12 @@ type isClpricePacketData_Packet interface {
 type ClpricePacketData_NoData struct {
 	NoData *NoData `protobuf:"bytes,1,opt,name=noData,proto3,oneof" json:"noData,omitempty"`
 }
+type ClpricePacketData_IbcPricePacket struct {
+	IbcPricePacket *IbcPricePacketData `protobuf:"bytes,2,opt,name=ibcPricePacket,proto3,oneof" json:"ibcPricePacket,omitempty"`
+}
 
-func (*ClpricePacketData_NoData) isClpricePacketData_Packet() {}
+func (*ClpricePacketData_NoData) isClpricePacketData_Packet()         {}
+func (*ClpricePacketData_IbcPricePacket) isClpricePacketData_Packet() {}
 
 func (m *ClpricePacketData) GetPacket() isClpricePacketData_Packet {
 	if m != nil {
@@ -87,10 +92,18 @@ func (m *ClpricePacketData) GetNoData() *NoData {
 	return nil
 }
 
+func (m *ClpricePacketData) GetIbcPricePacket() *IbcPricePacketData {
+	if x, ok := m.GetPacket().(*ClpricePacketData_IbcPricePacket); ok {
+		return x.IbcPricePacket
+	}
+	return nil
+}
+
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*ClpricePacketData) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
 		(*ClpricePacketData_NoData)(nil),
+		(*ClpricePacketData_IbcPricePacket)(nil),
 	}
 }
 
@@ -130,28 +143,142 @@ func (m *NoData) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NoData proto.InternalMessageInfo
 
+// this line is used by starport scaffolding # ibc/packet/proto/message
+// IbcPricePacketData defines a struct for the packet payload
+type IbcPricePacketData struct {
+	Name  string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Price int32  `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
+	Date  int32  `protobuf:"varint,3,opt,name=date,proto3" json:"date,omitempty"`
+}
+
+func (m *IbcPricePacketData) Reset()         { *m = IbcPricePacketData{} }
+func (m *IbcPricePacketData) String() string { return proto.CompactTextString(m) }
+func (*IbcPricePacketData) ProtoMessage()    {}
+func (*IbcPricePacketData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_515245d44d561d5f, []int{2}
+}
+func (m *IbcPricePacketData) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *IbcPricePacketData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_IbcPricePacketData.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *IbcPricePacketData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IbcPricePacketData.Merge(m, src)
+}
+func (m *IbcPricePacketData) XXX_Size() int {
+	return m.Size()
+}
+func (m *IbcPricePacketData) XXX_DiscardUnknown() {
+	xxx_messageInfo_IbcPricePacketData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_IbcPricePacketData proto.InternalMessageInfo
+
+func (m *IbcPricePacketData) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *IbcPricePacketData) GetPrice() int32 {
+	if m != nil {
+		return m.Price
+	}
+	return 0
+}
+
+func (m *IbcPricePacketData) GetDate() int32 {
+	if m != nil {
+		return m.Date
+	}
+	return 0
+}
+
+// IbcPricePacketAck defines a struct for the packet acknowledgment
+type IbcPricePacketAck struct {
+	PriceID string `protobuf:"bytes,1,opt,name=priceID,proto3" json:"priceID,omitempty"`
+}
+
+func (m *IbcPricePacketAck) Reset()         { *m = IbcPricePacketAck{} }
+func (m *IbcPricePacketAck) String() string { return proto.CompactTextString(m) }
+func (*IbcPricePacketAck) ProtoMessage()    {}
+func (*IbcPricePacketAck) Descriptor() ([]byte, []int) {
+	return fileDescriptor_515245d44d561d5f, []int{3}
+}
+func (m *IbcPricePacketAck) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *IbcPricePacketAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_IbcPricePacketAck.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *IbcPricePacketAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IbcPricePacketAck.Merge(m, src)
+}
+func (m *IbcPricePacketAck) XXX_Size() int {
+	return m.Size()
+}
+func (m *IbcPricePacketAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_IbcPricePacketAck.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_IbcPricePacketAck proto.InternalMessageInfo
+
+func (m *IbcPricePacketAck) GetPriceID() string {
+	if m != nil {
+		return m.PriceID
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*ClpricePacketData)(nil), "jboetticher.simpleclcosmos.clprice.ClpricePacketData")
 	proto.RegisterType((*NoData)(nil), "jboetticher.simpleclcosmos.clprice.NoData")
+	proto.RegisterType((*IbcPricePacketData)(nil), "jboetticher.simpleclcosmos.clprice.IbcPricePacketData")
+	proto.RegisterType((*IbcPricePacketAck)(nil), "jboetticher.simpleclcosmos.clprice.IbcPricePacketAck")
 }
 
 func init() { proto.RegisterFile("clprice/packet.proto", fileDescriptor_515245d44d561d5f) }
 
 var fileDescriptor_515245d44d561d5f = []byte{
-	// 193 bytes of a gzipped FileDescriptorProto
+	// 285 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x49, 0xce, 0x29, 0x28,
 	0xca, 0x4c, 0x4e, 0xd5, 0x2f, 0x48, 0x4c, 0xce, 0x4e, 0x2d, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9,
 	0x17, 0x52, 0xca, 0x4a, 0xca, 0x4f, 0x2d, 0x29, 0xc9, 0x4c, 0xce, 0x48, 0x2d, 0xd2, 0x2b, 0xce,
 	0xcc, 0x2d, 0xc8, 0x49, 0x4d, 0xce, 0x49, 0xce, 0x2f, 0xce, 0xcd, 0x2f, 0xd6, 0x83, 0x6a, 0x50,
-	0x4a, 0xe6, 0x12, 0x74, 0x86, 0x30, 0x03, 0xc0, 0x5a, 0x5d, 0x12, 0x4b, 0x12, 0x85, 0x5c, 0xb8,
-	0xd8, 0xf2, 0xf2, 0x41, 0x2c, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x6e, 0x23, 0x2d, 0x3d, 0xc2, 0x26,
-	0xe9, 0xf9, 0x81, 0x75, 0x78, 0x30, 0x04, 0x41, 0xf5, 0x3a, 0x71, 0x70, 0xb1, 0x41, 0x9c, 0xa3,
-	0xc4, 0xc1, 0xc5, 0x06, 0x91, 0x75, 0xf2, 0x3f, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6,
-	0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39,
-	0x86, 0x28, 0xd3, 0xf4, 0xcc, 0x92, 0x8c, 0xd2, 0x24, 0xbd, 0xe4, 0xfc, 0x5c, 0x7d, 0x24, 0xdb,
-	0xf4, 0x51, 0x6d, 0xd3, 0xaf, 0xd0, 0x87, 0x79, 0xb5, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d,
-	0xec, 0x55, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xd2, 0xce, 0xa4, 0xb3, 0x02, 0x01, 0x00,
-	0x00,
+	0x3a, 0xca, 0xc8, 0x25, 0xe8, 0x0c, 0x61, 0x07, 0x80, 0xf5, 0xba, 0x24, 0x96, 0x24, 0x0a, 0xb9,
+	0x70, 0xb1, 0xe5, 0xe5, 0x83, 0x58, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0xdc, 0x46, 0x5a, 0x7a, 0x84,
+	0x8d, 0xd2, 0xf3, 0x03, 0xeb, 0xf0, 0x60, 0x08, 0x82, 0xea, 0x15, 0x4a, 0xe0, 0xe2, 0xcb, 0x4c,
+	0x4a, 0x0e, 0x40, 0x98, 0x2d, 0xc1, 0x04, 0x36, 0xcd, 0x8c, 0x18, 0xd3, 0x3c, 0x51, 0x74, 0x42,
+	0x4d, 0x46, 0x33, 0xcf, 0x89, 0x83, 0x8b, 0x0d, 0xe2, 0x63, 0x25, 0x0e, 0x2e, 0x36, 0x88, 0xfd,
+	0x4a, 0x41, 0x5c, 0x42, 0x98, 0x7a, 0x85, 0x84, 0xb8, 0x58, 0xf2, 0x12, 0x73, 0x53, 0xc1, 0xfe,
+	0xe1, 0x0c, 0x02, 0xb3, 0x85, 0x44, 0xb8, 0x58, 0xc1, 0x76, 0x81, 0x9d, 0xc5, 0x1a, 0x04, 0xe1,
+	0x80, 0x54, 0xa6, 0x24, 0x96, 0xa4, 0x4a, 0x30, 0x83, 0x05, 0xc1, 0x6c, 0x25, 0x5d, 0x2e, 0x41,
+	0x54, 0x33, 0x1d, 0x93, 0xb3, 0x85, 0x24, 0xb8, 0xd8, 0xc1, 0x3a, 0x3c, 0x5d, 0xa0, 0xa6, 0xc2,
+	0xb8, 0x4e, 0xfe, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3,
+	0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78, 0x2c, 0xc7, 0x10, 0x65, 0x9a, 0x9e,
+	0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97, 0x9c, 0x9f, 0xab, 0x8f, 0x14, 0x08, 0xfa, 0xa8, 0x81, 0xa0,
+	0x5f, 0xa1, 0x0f, 0x8b, 0xd0, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0x70, 0x84, 0x1a, 0x03,
+	0x02, 0x00, 0x00, 0xff, 0xff, 0x08, 0x82, 0xea, 0x34, 0xe8, 0x01, 0x00, 0x00,
 }
 
 func (m *ClpricePacketData) Marshal() (dAtA []byte, err error) {
@@ -207,6 +334,27 @@ func (m *ClpricePacketData_NoData) MarshalToSizedBuffer(dAtA []byte) (int, error
 	}
 	return len(dAtA) - i, nil
 }
+func (m *ClpricePacketData_IbcPricePacket) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ClpricePacketData_IbcPricePacket) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	if m.IbcPricePacket != nil {
+		{
+			size, err := m.IbcPricePacket.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintPacket(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	return len(dAtA) - i, nil
+}
 func (m *NoData) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -227,6 +375,76 @@ func (m *NoData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *IbcPricePacketData) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *IbcPricePacketData) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *IbcPricePacketData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Date != 0 {
+		i = encodeVarintPacket(dAtA, i, uint64(m.Date))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.Price != 0 {
+		i = encodeVarintPacket(dAtA, i, uint64(m.Price))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintPacket(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *IbcPricePacketAck) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *IbcPricePacketAck) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *IbcPricePacketAck) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.PriceID) > 0 {
+		i -= len(m.PriceID)
+		copy(dAtA[i:], m.PriceID)
+		i = encodeVarintPacket(dAtA, i, uint64(len(m.PriceID)))
+		i--
+		dAtA[i] = 0xa
+	}
 	return len(dAtA) - i, nil
 }
 
@@ -265,12 +483,56 @@ func (m *ClpricePacketData_NoData) Size() (n int) {
 	}
 	return n
 }
+func (m *ClpricePacketData_IbcPricePacket) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.IbcPricePacket != nil {
+		l = m.IbcPricePacket.Size()
+		n += 1 + l + sovPacket(uint64(l))
+	}
+	return n
+}
 func (m *NoData) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
+	return n
+}
+
+func (m *IbcPricePacketData) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovPacket(uint64(l))
+	}
+	if m.Price != 0 {
+		n += 1 + sovPacket(uint64(m.Price))
+	}
+	if m.Date != 0 {
+		n += 1 + sovPacket(uint64(m.Date))
+	}
+	return n
+}
+
+func (m *IbcPricePacketAck) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.PriceID)
+	if l > 0 {
+		n += 1 + l + sovPacket(uint64(l))
+	}
 	return n
 }
 
@@ -344,6 +606,41 @@ func (m *ClpricePacketData) Unmarshal(dAtA []byte) error {
 			}
 			m.Packet = &ClpricePacketData_NoData{v}
 			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IbcPricePacket", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPacket
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthPacket
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthPacket
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &IbcPricePacketData{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.Packet = &ClpricePacketData_IbcPricePacket{v}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPacket(dAtA[iNdEx:])
@@ -394,6 +691,208 @@ func (m *NoData) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: NoData: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPacket(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPacket
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *IbcPricePacketData) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPacket
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: IbcPricePacketData: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: IbcPricePacketData: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPacket
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPacket
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPacket
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			m.Price = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPacket
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Price |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Date", wireType)
+			}
+			m.Date = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPacket
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Date |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPacket(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPacket
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *IbcPricePacketAck) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPacket
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: IbcPricePacketAck: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: IbcPricePacketAck: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PriceID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPacket
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPacket
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPacket
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PriceID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPacket(dAtA[iNdEx:])

@@ -1,6 +1,17 @@
 import { Reader, Writer } from "protobufjs/minimal";
 export declare const protobufPackage = "jboetticher.simpleclcosmos.clprice";
 /** this line is used by starport scaffolding # proto/tx/message */
+export interface MsgSendIbcPrice {
+    sender: string;
+    port: string;
+    channelID: string;
+    timeoutTimestamp: number;
+    name: string;
+    price: number;
+    date: number;
+}
+export interface MsgSendIbcPriceResponse {
+}
 export interface MsgCreateSentPrice {
     creator: string;
     priceID: string;
@@ -49,6 +60,20 @@ export interface MsgDeletePrice {
 }
 export interface MsgDeletePriceResponse {
 }
+export declare const MsgSendIbcPrice: {
+    encode(message: MsgSendIbcPrice, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendIbcPrice;
+    fromJSON(object: any): MsgSendIbcPrice;
+    toJSON(message: MsgSendIbcPrice): unknown;
+    fromPartial(object: DeepPartial<MsgSendIbcPrice>): MsgSendIbcPrice;
+};
+export declare const MsgSendIbcPriceResponse: {
+    encode(_: MsgSendIbcPriceResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendIbcPriceResponse;
+    fromJSON(_: any): MsgSendIbcPriceResponse;
+    toJSON(_: MsgSendIbcPriceResponse): unknown;
+    fromPartial(_: DeepPartial<MsgSendIbcPriceResponse>): MsgSendIbcPriceResponse;
+};
 export declare const MsgCreateSentPrice: {
     encode(message: MsgCreateSentPrice, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreateSentPrice;
@@ -136,6 +161,7 @@ export declare const MsgDeletePriceResponse: {
 /** Msg defines the Msg service. */
 export interface Msg {
     /** this line is used by starport scaffolding # proto/tx/rpc */
+    SendIbcPrice(request: MsgSendIbcPrice): Promise<MsgSendIbcPriceResponse>;
     CreateSentPrice(request: MsgCreateSentPrice): Promise<MsgCreateSentPriceResponse>;
     UpdateSentPrice(request: MsgUpdateSentPrice): Promise<MsgUpdateSentPriceResponse>;
     DeleteSentPrice(request: MsgDeleteSentPrice): Promise<MsgDeleteSentPriceResponse>;
@@ -146,6 +172,7 @@ export interface Msg {
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
+    SendIbcPrice(request: MsgSendIbcPrice): Promise<MsgSendIbcPriceResponse>;
     CreateSentPrice(request: MsgCreateSentPrice): Promise<MsgCreateSentPriceResponse>;
     UpdateSentPrice(request: MsgUpdateSentPrice): Promise<MsgUpdateSentPriceResponse>;
     DeleteSentPrice(request: MsgDeleteSentPrice): Promise<MsgDeleteSentPriceResponse>;

@@ -8,6 +8,7 @@ export interface ClpriceMsgCreateSentPriceResponse {
 }
 export declare type ClpriceMsgDeletePriceResponse = object;
 export declare type ClpriceMsgDeleteSentPriceResponse = object;
+export declare type ClpriceMsgSendIbcPriceResponse = object;
 export declare type ClpriceMsgUpdatePriceResponse = object;
 export declare type ClpriceMsgUpdateSentPriceResponse = object;
 export interface ClpricePrice {
