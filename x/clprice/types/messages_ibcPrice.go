@@ -1,6 +1,7 @@
 package types
 
 import (
+	"time"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -16,14 +17,19 @@ func NewMsgSendIbcPrice(
 	price int32,
 	date int32,
 ) *MsgSendIbcPrice {
+
+	// TODO: this is where we simulate getting the data from the wallet.
+	currentPrice := int32(500)
+	currentDate := int32(time.Now().Unix())
+
 	return &MsgSendIbcPrice{
 		Sender:           sender,
 		Port:             port,
 		ChannelID:        channelID,
 		TimeoutTimestamp: timeoutTimestamp,
 		Name:             name,
-		Price:            price,
-		Date:             date,
+		Price:            currentPrice, //price,
+		Date:             currentDate, //date,
 	}
 }
 
