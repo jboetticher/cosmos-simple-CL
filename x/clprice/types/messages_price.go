@@ -4,20 +4,41 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"time"
-	//"github.com/jaynagpaul/go-web3"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+	"strconv"
 )
 
 var _ sdk.Msg = &MsgCreatePrice{}
 
 func NewMsgCreatePrice(creator string, name string, price int32, date int32) *MsgCreatePrice {
 
-	// TODO: this is where we simulate getting the data from the wallet.
-	currentPrice := int32(500)
+	// TODO: this is where we get the data from the wallet.
+	var currentPrice int32 = -1
+	var newName string = name
+	conn, err := ethclient.Dial("https://kovan.infura.io/v3/8e655913ba684608bcbfc42b3626b8dc")
+	if err == nil {
+		contractAddress := common.HexToAddress("0xEC60b0Bb5aa407001c726fbC174bFe7d3b671eAE")
+		contract, err := NewPriceConsumerV3(contractAddress, conn);
+		if err == nil {
+			p, ohno := contract.GetLatestPrice(&bind.CallOpts{})
+			p = p / 10000
+			if ohno != nil {
+				newName = ohno.Error()
+			} else {
+				pstr := p.String()
+				gah, _ := strconv.Atoi(pstr)
+				currentPrice =  int32(gah)
+			}
+		}
+	} 
+
 	currentDate := int32(time.Now().Unix())
 
 	return &MsgCreatePrice{
 		Creator: creator,
-		Name:    name,
+		Name:    newName,
 		Price:   currentPrice,
 		Date:    currentDate,
 	}
