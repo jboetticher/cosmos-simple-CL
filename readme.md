@@ -1,26 +1,38 @@
 # simpleclcosmos
 
-**simpleclcosmos** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://github.com/tendermint/starport).
+**simpleclcosmos** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://github.com/tendermint/starport).  
+It includes a module, clprice, that can connect to the chainlink module.  
+If you want your own instance, you will need to deploy and change references to the solidity code, found in the solidity folder.  
 
-## Get started
+## Setup
 
+Serve Earth Blockchain:
 ```
-starport serve
+starport serve -c earth.yml
+```  
+
+Serve Mars Blockchain:
 ```
+starport serve -c mars.yml
+```  
 
-`serve` command installs dependencies, builds, initializes and starts your blockchain in development.
+Configure Relayer:
+```
+starport relayer configure --advanced --source-rpc "http://0.0.0.0:26657" --source-faucet "http://0.0.0.0:4500" --source-port "clprice" --source-version "clprice-1" --target-rpc "http://0.0.0.0:26659" --target-faucet "http://0.0.0.0:4501" --target-port "clprice" --target-version "clprice-1"
+```  
 
-## Configure
+Start Relayer:
+```
+starport relayer connect
+```  
 
-Your blockchain in development can be configured with `config.yml`. To learn more see the [reference](https://github.com/tendermint/starport#documentation).
+## Normal CRUD:
+Add Price:
+```
+simpleclcosmosd tx clprice create-price “ETH/USD” --from alice --chain-id earth --home ~/.earth
+```  
 
-## Launch
-
-To launch your blockchain live on mutliple nodes use `starport network` commands. Learn more about [Starport Network](https://github.com/tendermint/spn).
-
-## Learn more
-
-- [Starport](https://github.com/tendermint/starport)
-- [Cosmos SDK documentation](https://docs.cosmos.network)
-- [Cosmos SDK Tutorials](https://tutorials.cosmos.network)
-- [Discord](https://discord.gg/W8trcGV)
+Verify Price was Added:
+```
+simpleclcosmosd q clprice list-price
+```  
